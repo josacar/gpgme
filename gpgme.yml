@@ -1,0 +1,28 @@
+# Sample configuration to generate bindings to `ioctl(3p)`.
+# See `ioctl.cr` for the sample Crystal code.
+
+# Put everything into `Ioctl`
+module: Gpgme
+
+# We only need Crystal code generation for this
+generators:
+  crystal:
+    output: binding/gpgme.cr
+
+# Type-specific configuration:
+types:
+  # Modify the behaviour of `struct winsize`:
+  winsize:
+    # We want to copy its structure:
+    copy_structure: true
+    # But don't care about any methods that may be defined in it.  As bindgen
+    # comes from a C++ background, it has to handle this possibility.
+    generate_binding: false
+    generate_wrapper: false
+
+# Configure the Clang-based parser
+parser:
+  # Tell it which files to inspect.  These files are searched for in the C++
+  # search paths, so no need to know the absolute paths.
+  files:
+    - libgpgme.h

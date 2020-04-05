@@ -1,0 +1,13 @@
+name: gpgme
+version: 0.1.0
+
+authors:
+  - Jose Luis Salas <josacar@users.noreply.github.com>
+
+crystal: 0.33.0
+
+dependencies:
+  bindgen:
+    github: Papierkorb/bindgen
+
+license: MIT
